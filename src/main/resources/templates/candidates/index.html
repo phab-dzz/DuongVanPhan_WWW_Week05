@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Candidate Details</title>
+</head>
+<body>
+<h1>Candidate Information</h1>
+
+<!-- Kiểm tra nếu có dữ liệu candidates -->
+<div th:if="${candidates != null}">
+    <p>ID: <span th:text="${candidates.id}">ID</span></p>
+    <p>Name: <span th:text="${candidates.name}">Name</span></p>
+    <p>Email: <span th:text="${candidates.email}">Email</span></p>
+    <!-- Thay đổi các thuộc tính trên theo model của bạn -->
+</div>
+
+<!-- Hiển thị nếu không tìm thấy dữ liệu -->
+<div th:if="${candidates == null}">
+    <p>No candidate found.</p>
+</div>
+</body>
+</html>
