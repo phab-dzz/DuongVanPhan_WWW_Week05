@@ -37,7 +37,20 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     private Company company;
-    public Address( String zipcode, String street, String city, String number,CountryCode country) {
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", country=" + country +
+                ", number='" + number + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
+    }
+
+    public Address(String zipcode, String street, String city, String number, CountryCode country) {
         this.country = country;
         this.city = city;
         this.zipcode = zipcode;

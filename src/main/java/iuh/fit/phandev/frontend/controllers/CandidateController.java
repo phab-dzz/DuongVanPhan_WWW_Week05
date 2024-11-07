@@ -1,16 +1,15 @@
 package iuh.fit.phandev.frontend.controllers;
 
+import iuh.fit.phandev.backend.models.Address;
 import iuh.fit.phandev.backend.models.Candidate;
+import iuh.fit.phandev.backend.repoitories.AddressRepository;
 import iuh.fit.phandev.backend.repoitories.CandidateRepository;
 import iuh.fit.phandev.backend.services.CandidateServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,7 +18,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
+
 public class CandidateController {
+    @Autowired
+    private AddressRepository addressRepository;
     @Autowired
     private CandidateRepository candidateRepository;
     @Autowired
@@ -47,10 +49,83 @@ public class CandidateController {
         }
         return "candidates/candidates-paging";
     }
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+//    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @GetMapping("index")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("candidates/index");
-        modelAndView.addObject("candidates", candidateRepository.findById(1L).orElse(null));
+        ModelAndView modelAndView = new ModelAndView("candidateById");
+        try {
+            modelAndView.addObject("candidates", candidateRepository.findById(1L).orElse(null));
+        } catch (Exception e) {
+//            logger.error("Error fetching candidate", e);
+            modelAndView.addObject("candidates", null);
+        }
         return modelAndView;
     }
+//    @DeleteMapping("/delete/{id}")
+//    public String delete(@PathVariable Long id) {
+//        candidateRepository.deleteById(id);
+//        return "redirect:/candidates";
+//    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        candidateRepository.deleteById(id);
+
+        return "redirect:/list";
+    }
+    @PostMapping("/candidates/add")
+    public String addCandidate(@ModelAttribute("candidate") Candidate candidate) {
+
+        if (candidate.getAddress() == null) {
+
+            candidate.setAddress(new Address());
+        }
+
+
+        Address address = new Address(
+                candidate.getAddress().getNumber(),
+                candidate.getAddress().getStreet(),
+                candidate.getAddress().getCity(),
+                candidate.getAddress().getZipcode(),
+                candidate.getAddress().getCountry()
+        );
+
+
+        addressRepository.save(address);
+
+
+        candidate.setAddress(address);
+
+
+        candidateRepository.save(candidate);
+
+        return "redirect:/list";
+    }
+
+    @GetMapping("/add-candidates")
+    public ModelAndView showAddCandidateForm(Model model) {
+        ModelAndView modelAndView   =new ModelAndView("candidates/add-candidate");
+
+            // Kiểm tra nếu Address chưa được khởi tạo
+
+
+        Candidate candidate = new Candidate();
+        if (candidate.getAddress() == null) {
+            candidate.setAddress(new Address());
+        }
+
+        modelAndView.addObject("candidate",candidate);
+
+      return  modelAndView;
+    }
+//    @GetMapping("/openAddForm")
+//    public ModelAndView openAddForm(Model model){
+//        ModelAndView modelAndView = new ModelAndView();
+//        Skill skill = new Skill();
+//        modelAndView.addObject("skill", skill);
+//        modelAndView.addObject("skillTypes", SkillType.values());
+//        modelAndView.setViewName("common/addSkill");
+//        return modelAndView;
+//    }
+
+
 }

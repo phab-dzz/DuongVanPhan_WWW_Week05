@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Candidate Details</title>
+</head>
+<body>
+<h1>Candidate Information</h1>
+
+<!--&lt;!&ndash; Kiểm tra nếu có dữ liệu candidates &ndash;&gt;-->
+<!--<div th:if="${candidates != null && !#lists.isEmpty(candidates)}">-->
+<!--    <div th:each="candidate : ${candidates}">-->
+<!--        <p>ID: <span th:text="${candidate.id}">ID</span></p>-->
+<!--        <p>Name: <span th:text="${candidate.name}">Name</span></p>-->
+<!--        <p>Email: <span th:text="${candidate.email}">Email</span></p>-->
+<!--        &lt;!&ndash; Thay đổi các thuộc tính trên theo model của bạn &ndash;&gt;-->
+<!--        <hr /> &lt;!&ndash; Dùng để phân cách giữa các ứng viên &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Hiển thị nếu không tìm thấy dữ liệu &ndash;&gt;-->
+<!--<div th:if="${candidates == null || #lists.isEmpty(candidates)}">-->
+<!--    <p>No candidate found.</p>-->
+<!--</div>-->
+</body>
+</html>

@@ -1,12 +1,15 @@
 package iuh.fit.phandev.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -30,4 +33,17 @@ public class Job {
     @OneToMany(mappedBy = "job")
     private Set<JobSkill> jobSkills = new LinkedHashSet<>();
 
+    public Job(String jobDesc, String jobName) {
+        this.jobDesc = jobDesc;
+        this.jobName = jobName;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", jobDesc='" + jobDesc + '\'' +
+                ", jobName='" + jobName + '\'' +
+                '}';
+    }
 }
