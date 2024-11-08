@@ -1,10 +1,13 @@
 package iuh.fit.phandev.backend.models;
 
+import iuh.fit.phandev.backend.enums.SkillType;
 import iuh.fit.phandev.backend.ids.JobSkillId;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Getter
 @Setter
 @Entity
@@ -23,10 +26,10 @@ public class JobSkill {
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
+    @Column(name = "skill_level", nullable = false)
+    private SkillType skillLevel;
+
     @Column(name = "more_infos", length = 1000)
     private String moreInfos;
-
-    @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
 
 }

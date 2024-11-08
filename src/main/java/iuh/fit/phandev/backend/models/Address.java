@@ -2,11 +2,12 @@ package iuh.fit.phandev.backend.models;
 
 import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 @AllArgsConstructor
-@NoArgsConstructor
-@ToString
+
 @Getter
 @Setter
 @Entity
@@ -17,20 +18,20 @@ public class Address {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "street", length = 150)
-    private String street;
-
-    @Column(name = "city", length = 50)
-    private String city;
-
     @Column(name = "country")
     private CountryCode country;
+
+    @Column(name = "zipcode", length = 7)
+    private String zipcode;
 
     @Column(name = "number", length = 20)
     private String number;
 
-    @Column(name = "zipcode", length = 7)
-    private String zipcode;
+    @Column(name = "city", length = 50)
+    private String city;
+
+    @Column(name = "street", length = 150)
+    private String street;
 
     @OneToOne(mappedBy = "address")
     private Candidate candidate;
@@ -38,33 +39,26 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Company company;
 
+    public Address( String number, String street,String city, String zipcode, CountryCode country) {
+        this.country = country;
+        this.zipcode = zipcode;
+        this.number = number;
+        this.city = city;
+        this.street = street;
+    }
+
+    public Address() {
+    }
+
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
+                ", zipcode='" + zipcode + '\'' +
                 ", country=" + country +
                 ", number='" + number + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
                 '}';
     }
-
-    public Address(String zipcode, String street, String city, String number, CountryCode country) {
-        this.country = country;
-        this.city = city;
-        this.zipcode = zipcode;
-        this.street = street;
-        this.number = number;
-    }
-
-    public Address(long id,String street,  String city, String zipcode,CountryCode country) {
-        this.id = id;
-        this.country = country;
-        this.city = city;
-        this.zipcode = zipcode;
-        this.street = street;
-        this.number = number;
-    }
-
 }

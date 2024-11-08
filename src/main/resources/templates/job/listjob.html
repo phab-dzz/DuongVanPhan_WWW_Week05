@@ -17,7 +17,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Desciption
+                <th>Desciption</th>
                 <th>Action</th>
                 <th><a class="btn btn-outline-success" th:href="@{/job/add-job}">Them job</a></th>
 
@@ -29,12 +29,71 @@
                 <td th:text="${job.jobName}"></td>
                 <td th:text="${job.jobDesc}"></td>
 
-                <td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${job.id})}">Edit</a></td>
+                <td>
+<!--                    <a class="btn btn-warning"-->
+<!--                       th:href="@{/job/edit/{id}(id=${job.id})}"-->
+<!--                       data-bs-toggle="modal"-->
+<!--                       data-bs-target="#jobModal"-->
+<!--                       th:attr="data-id=${job.id}, data-title=${job.jobName}, data-description=${job.jobDesc}"-->
+                    <a class="btn btn-warning" href="#">
+                        Edit
+                    </a>
+                </td>
+
+
                 <td><a  class="btn btn-danger" th:href="@{/job/delete/{id}(id=${job.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<!--modal edit-->
+<!--<div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="jobModalLabel">Chỉnh Sửa Công Việc</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/job/edit}" th:object="${jobid}" method="post">-->
+<!--&lt;!&ndash;                    <input type="hidden" id="jobId" th:value="${job.id}">&ndash;&gt;-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="title" class="form-label">Name</label>-->
+<!--                        <input type="text" class="form-control" id="title"  th:field="*{jobName}" placeholder="Nhập tiêu đề công việc" required>-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="description" class="form-label">Mô Tả</label>-->
+<!--                        <textarea class="form-control" id="description" th:field="*{jobDesc}" rows="3" placeholder="Nhập mô tả công việc" required></textarea>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Lưu</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script>-->
+<!--    const jobModal = document.getElementById('jobModal');-->
+<!--    jobModal.addEventListener('show.bs.modal', function (event) {-->
+<!--        const button = event.relatedTarget;-->
+
+<!--        // Lấy dữ liệu từ nút "Edit"-->
+<!--        const jobId = button.getAttribute('data-id');-->
+<!--        const jobTitle = button.getAttribute('data-title');-->
+<!--        const jobDescription = button.getAttribute('data-description');-->
+
+<!--        // Kiểm tra và điền giá trị vào modal-->
+<!--        if (jobId && jobTitle && jobDescription) {-->
+<!--            document.getElementById('jobId').value = jobId;-->
+<!--            document.getElementById('title').value = jobTitle;-->
+<!--            document.getElementById('description').value = jobDescription;-->
+<!--        } else {-->
+<!--            console.error('Missing data attributes');-->
+<!--        }-->
+<!--    });-->
+
+<!--</script>-->
+
+
 </body>
 </html>

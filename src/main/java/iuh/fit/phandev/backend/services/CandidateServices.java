@@ -2,7 +2,6 @@ package iuh.fit.phandev.backend.services;
 
 import iuh.fit.phandev.backend.models.Candidate;
 import iuh.fit.phandev.backend.repoitories.CandidateRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

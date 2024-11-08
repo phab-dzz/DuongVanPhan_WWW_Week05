@@ -2,8 +2,10 @@ package iuh.fit.phandev.frontend.controllers;
 
 import iuh.fit.phandev.backend.models.Job;
 import iuh.fit.phandev.backend.repoitories.JobReponsitory;
+import iuh.fit.phandev.backend.repoitories.JobSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class JobController {
     @Autowired
     private JobReponsitory jobReponsitory;
+    @Autowired
+    private JobSkillRepository jobSkillRepository;
+
     @GetMapping("/add-job")
     public ModelAndView addJob() {
         ModelAndView mav = new ModelAndView("job/add-job");
@@ -36,4 +41,21 @@ public class JobController {
         ModelAndView mav = new ModelAndView("redirect:/job/list");
         return mav;
     }
+    @PostMapping("/edit")
+    public ModelAndView editJob(@ModelAttribute Job job) {
+        ModelAndView mav = new ModelAndView("redirect:/job/list");
+
+        jobReponsitory.save(job);
+
+        return mav;
+    }
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Job job = jobReponsitory.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
+        model.addAttribute("jobid", job);
+        return "job/listjob";
+    }
+
+
+
 }
