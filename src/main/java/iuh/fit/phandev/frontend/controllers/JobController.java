@@ -1,5 +1,7 @@
 package iuh.fit.phandev.frontend.controllers;
 
+import iuh.fit.phandev.backend.models.Candidate;
+import iuh.fit.phandev.backend.models.Company;
 import iuh.fit.phandev.backend.models.Job;
 import iuh.fit.phandev.backend.repoitories.JobReponsitory;
 import iuh.fit.phandev.backend.repoitories.JobSkillRepository;
@@ -8,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/job")
@@ -24,7 +29,9 @@ public class JobController {
         return mav;
     }
     @PostMapping("/add")
-    public ModelAndView addJob(@ModelAttribute("job") Job job) {
+    public ModelAndView addJob(@ModelAttribute("job") Job job, HttpServletRequest request) {
+        Company company = (Company) request.getSession().getAttribute("companyLogin");
+        job.setCompany(company);
         jobReponsitory.save(job);
         ModelAndView mav = new ModelAndView("redirect:/job/list");
         return mav;
@@ -54,6 +61,22 @@ public class JobController {
         Job job = jobReponsitory.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
         model.addAttribute("jobid", job);
         return "job/listjob";
+    }
+    @GetMapping("/findJobWithcan")
+    public ModelAndView findJobWithCan(HttpServletRequest request) {
+        Candidate can= (Candidate)request.getSession().getAttribute("candidateLogin");
+        List<Job> listjobs=jobReponsitory.findAllJobMatchWithCandidate(can.getId());
+        ModelAndView mav = new ModelAndView("job/JobWithCan");
+        mav.addObject("jobs", listjobs);
+        return mav;
+
+    }
+    @GetMapping("/advanceJobMatch")
+    public ModelAndView findAdvanceJob(@RequestParam("value") String value) {
+        ModelAndView mav = new ModelAndView("job/listjob");
+        List<Job> listjob=jobReponsitory.findJobsByAdvanceJobMatch(value);
+        mav.addObject("jobs", listjob);
+        return mav;
     }
 
 

@@ -35,8 +35,8 @@
 <!--                       data-bs-toggle="modal"-->
 <!--                       data-bs-target="#jobModal"-->
 <!--                       th:attr="data-id=${job.id}, data-title=${job.jobName}, data-description=${job.jobDesc}"-->
-                    <a class="btn btn-warning" href="#">
-                        Edit
+                    <a class="btn btn-warning" th:href="@{/jobskill/openaddjobskill(jobId=${job.getId()})}">
+                       add jobskill
                     </a>
                 </td>
 

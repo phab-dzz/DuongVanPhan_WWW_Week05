@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job phu hop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div th:replace="nav"></div>
+<div th:if="${jobs == null || jobs.isEmpty()}">
+    <h2 class="text-center text-warning">không có công việc phù hợp để hiển thị</h2>
+</div>
+<div th:unless="${jobs == null ||jobs.isEmpty()}">
+    <h1 class="text-center text-success">ột số công việc phù hợp với bạn như sau</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Company ID</th>
+            <th>Company Name</th>
+            <th>Job ID</th>
+            <th>Job Name</th>
+            <th>Job Desc</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="job : ${jobs}">
+            <td scope="row" th:text="${job.getCompany().getId()}"></td>
+            <td th:text="${job.getCompany().getCompName()}"></td>
+            <td th:text="${job.getId()}"></td>
+            <td th:text="${job.getJobName()}"></td>
+            <td th:text="${job.getJobDesc()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

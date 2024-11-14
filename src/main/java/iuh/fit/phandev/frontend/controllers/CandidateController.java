@@ -126,28 +126,28 @@ public class CandidateController {
 //        modelAndView.setViewName("common/addSkill");
 //        return modelAndView;
 //    }
-    @GetMapping("/open-signin-can")
-    public String opensigninCan(){
-        return"commons/signincan";
-    }
-    @PostMapping("/sign-in")
-    public String signin(Model model , @RequestParam("username") String usename, @RequestParam("password") String password
-                         ) {
-        Candidate candidate = null;
-
-
-            candidate = candidateRepository.findCandidateByUsernameAndPassword(usename, password).orElse(null);
-
-        if (candidate == null ){
-            model.addAttribute("mess", "Tài khoản không tồn tại!");
-            return "commons/signincan";
-        }
-        model.addAttribute("candidate", candidate);
-
-
-
-        return "commons/homecan";
-    }
+//    @GetMapping("/open-signin-can")
+//    public String opensigninCan(){
+//        return"commons/signincan";
+//    }
+//    @PostMapping("/sign-in")
+//    public String signin(Model model , @RequestParam("username") String usename, @RequestParam("password") String password
+//                         ) {
+//        Candidate candidate = null;
+//
+//
+//            candidate = candidateRepository.findCandidateByUsernameAndPassword(usename, password).orElse(null);
+//
+//        if (candidate == null ){
+//            model.addAttribute("mess", "Tài khoản không tồn tại!");
+//            return "commons/signincan";
+//        }
+//        model.addAttribute("candidate", candidate);
+//
+//
+//
+//        return "commons/homecan";
+//    }
 
 
 }

@@ -14,6 +14,6 @@ public interface CandidateSkillRepository extends JpaRepository<CandidateSkill, 
     @Modifying
     @Query("DELETE FROM CandidateSkill CK where CK.can.id = :canID and CK.skill.id = :skillID")
     public boolean deleteCandidateSkillByCandidateAndSkill(@Param("canID") long canID, @Param("skillID") long skillID);
-
+    public List<CandidateSkill>  findAllByCan_Id(long candidateID);
 
 }
