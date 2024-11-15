@@ -1,5 +1,5 @@
 <nav th:fragment="nav" class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
-    <a class="navbar-brand active" href="#">Home</a>
+    <a class="navbar-brand active" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,12 +12,46 @@
             <li class="nav-item">
                 <a th:if="${session != null && session.companyLogin != null}" class="nav-link" th:href="@{/job/list}">Xem danh sách Job</a>
             </li>
-            <li class="nav-item active mr-3">
-                <a th:if="${session != null && session.companyLogin != null}"
-                   th:href="@{/findCadidateMatchOfCompany}"
-                   class="nav-link"
-                >Tìm các ứng viên có
-                    skill phù hợp</a>
+<!--            <li class="nav-item active mr-3">-->
+<!--                <a th:if="${session != null && session.companyLogin != null}"-->
+<!--                   th:href="@{/findCadidateMatchOfCompany}"-->
+<!--                   class="nav-link"-->
+<!--                >Tìm các ứng viên có-->
+<!--                    skill phù hợp</a>-->
+<!--            </li>-->
+
+            <li class="nav-item dropdown" th:if="${session != null && session.companyLogin != null}">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Xem danh sách
+                  công viec</a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item active mr-3"
+                    >
+                        <a
+                                th:href="@{/findCadidateMatchOfCompany}"
+                           class=" nav-link"
+                        >Tìm các ứng phù hợp</a>
+                    </li>
+                    <li class="nav-item active mr-3"
+                    >
+                        <a
+                           href="/skill/findCadidateskillMatchOfCompany"
+                           class=" nav-link"
+                        >Xem công
+                            việc có skill phù hợp</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item active mr-3"
+            >
+                <a th:if="${session != null && session.candidateLogin != null}" href="/candidateSkill/SkillOfCandidate"
+                   class="btn btn-outline-success my-2 my-sm-0 nav-link"
+                >Xem kỹ năng cá nhân của mình</a>
+            </li>
+            <li class="nav-item active mr-3" >
+                <a th:if="${session != null && session.candidateLogin != null}" th:href="@{/skill/findSkillLearn}"
+                   class="btn btn-outline-success my-2 my-sm-0 nav-link"
+                >Đề xuất kỹ năng nên học
+           </a>
             </li>
             <li class="nav-item active mr-3"
             >
@@ -25,19 +59,7 @@
                    href="/job/findJobWithcan"
                    class=" nav-link"
                 >Xem công
-                    việc có skill phù hợp</a>
-
-            <li class="nav-item active mr-3"
-            >
-                <a th:if="${session != null && session.candidateLogin != null}" href="/candidateSkill/SkillOfCandidate"
-                   class="btn btn-outline-success my-2 my-sm-0 nav-link"
-                >Xem candidate_skill của mình</a>
-            </li>
-            <li class="nav-item active mr-3" >
-                <a th:if="${session != null && session.candidateLogin != null}" th:href="@{/skill/findSkillLearn}"
-                   class="btn btn-outline-success my-2 my-sm-0 nav-link"
-                >Đề xuất skill
-           </a>
+                    việc phù hợp</a>
             </li>
 
             <li class="nav-item dropdown" th:if="${session != null && session.companyLogin != null}">

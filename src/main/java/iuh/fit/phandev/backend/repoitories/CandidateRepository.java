@@ -12,10 +12,14 @@ import java.util.Optional;
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     public Optional<Candidate> findCandidateByUsernameAndPassword(String username, String password);
-//    public boolean deleteCandidateById(long id);
-//    public Optional<Candidate> findCandidateByUsernameAndPassword(String username, String password);
+
     @Query("select c from Candidate c join c.candidateSkills ck join ck.skill s join s.jobSkills js join js.job j " +
             "where j.id = :jobID and c.address.city = j.company.address.city")
     public List<Candidate> findCadidatesMatchWithJobs(@Param("jobID") long jobID);
+    @Query("select c from Candidate c join c.candidateSkills ck join ck.skill s join s.jobSkills js join js.job j " +
+            "where s.id = :SkillID and c.address.city = j.company.address.city")
+    public List<Candidate> findCadidatesMatchWithSkills(@Param("SkillID") long SkillID);
+
+
 
 }

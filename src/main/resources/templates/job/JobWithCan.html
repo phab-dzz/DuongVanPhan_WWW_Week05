@@ -8,32 +8,38 @@
 </head>
 <body>
 <div th:replace="nav"></div>
+<h1 class="text-center mb-4">Đề xuất công việc</h1>
 <div th:if="${jobs == null || jobs.isEmpty()}">
-    <h2 class="text-center text-warning">không có công việc phù hợp để hiển thị</h2>
+    <h2 class="text-center alert alert-danger mt4">không có công việc phù hợp để hiển thị</h2>
 </div>
+
 <div th:unless="${jobs == null ||jobs.isEmpty()}">
-    <h1 class="text-center text-success">ột số công việc phù hợp với bạn như sau</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Company ID</th>
-            <th>Company Name</th>
-            <th>Job ID</th>
-            <th>Job Name</th>
-            <th>Job Desc</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="job : ${jobs}">
-            <td scope="row" th:text="${job.getCompany().getId()}"></td>
-            <td th:text="${job.getCompany().getCompName()}"></td>
-            <td th:text="${job.getId()}"></td>
-            <td th:text="${job.getJobName()}"></td>
-            <td th:text="${job.getJobDesc()}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <h3 class="mb-4">Một số công việc phù hợp với bạn:</h3>
+    <div class="row">
+        <div th:each="job : ${jobs}" class="col-md-4 mb-3">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${'Mã công việc: '+job.getId()}"></h5>
+
+                    <p><strong>Tên:</strong> <span th:text="${job.getJobName()}"></span></p>
+                    <p><strong>Mô tả:</strong> <span th:text="${job.getJobDesc()}"></span></p>
+                    <p><strong>Tên công ty:</strong> <span
+                            th:text="${job.company != null ? job.getCompany().getCompName() : ''}"></span>
+                    </p>
+                     <form action="#" th:action="@{/job/sendmailcompany}" method="post">
+                        <input type="hidden" name="id" th:value="${job.getId()}"/>
+                        <button type="submit" class="btn btn-success">Gửi mail</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div th:if="${mess!= null}">
+        <p class="alert alert-primary" th:text="${mess}"></p>
+    </div>
 </div>
+
 
 </body>
 </html>

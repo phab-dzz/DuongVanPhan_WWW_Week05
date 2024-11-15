@@ -1,27 +1,43 @@
-WWW_Week05-Spring JPA
--Danh sach candidate khong phan trang.
-![img.png](img/img.png)
--Danh sachs candidate phan trang.
-![img_1.png](img/img_1.png)
---Thêm cột "username" và "password" vào candidate và company để dễ dàng xem và quản lý
--Màn hình đăng nhập dành cho candidate hay company
-![signin.png](img/signin.png)
-![screen_signin.png](img/screen_signin.png)
--Màn hình trang chủ với một số chức năng của company
-![screen_com.png](img%2Fscreen_com.png)
-- xem danh sach candidate
-- ![screen_list.png](img%2Fscreen_list.png)
-- Xem danh sach candidate phan trang
-![screen_paging_list.png](img%2Fscreen_paging_list.png)
-- them candidate moi
-![addcandiate.png](img%2Faddcandiate.png)
+# Xây Dựng Hệ Thống tuyển ứng viên cho công ty công
+(Một số yêu cầu)
+## 1. Tạo các Entity để tạo ra các bảng trong cơ sở dữ liệu
+## 2. Viết các Repositories Interface
+## 3. Viết các lớp Services
+## . Các trang web theo yêu cầu  dành cho Công ty
+## 4.Các chức năng cho công ty(nhà tuyển dụng)
+### 4.1 Trang đăng nhập với vai trò là nhà tuyển dụng
+![homepage.png](img%2Fhomepage.png)
+![signincom.png](img%2Fsignincom.png)
+### 4.2 Đăng tin tuyển dụng
+![post.png](img%2Fpost.png)
+![listjob.png](img%2Flistjob.png)
+![jobskill.png](img%2Fjobskill.png)
+### 4.3.1 Xem danh sách ứng viên phù hợp với công việc(cùng khu vực với công ty)
+![jobmatchcomp.png](img%2Fjobmatchcomp.png)
+![filtercandidatematchjob.png](img%2Ffiltercandidatematchjob.png)
+### 4.3.2 Xem danh sách ứng viên có skill phù hợp rồi gửi mail mời(lọc theo skill mà công ty cần->Khi chọn được ứng viên thì gửi mail cho ứng viên).
+![skillmatchjobComp.png](img%2FskillmatchjobComp.png)
+![sendmail_success.png](img%2Fsendmail_success.png)
+![mail.png](img%2Fmail.png)
+### code minh hoa
+![code_mail.png](img%2Fcode_mail.png)
+### 4.4 Thêm skill mới
+![addskill.png](img%2Faddskill.png)
 
 
----- CANDIDATE-----
--- Màn hình trang chủ với một số chức năng của candiate
-![screen_candiate.png](img%2Fscreen_candiate.png)
--- list job
-![list_job.png](img%2Flist_job.png)
-- Add job
-![addjob.png](img%2Faddjob.png)
-![after_addjob.png](img%2Fafter_addjob.png)
+## 5. Các chức năng cho ứng viên
+### 5.1 Trang đăng nhập với vai trò là ứng viên
+![signinCan.png](img%2FsigninCan.png)
+### 5.2.1 ứng viên khi log vào sẽ được gợi ý các công việc có skill phù hợp với mình
+![suggestjobwithCan.png](img%2FsuggestjobwithCan.png)
+### 5.2.2 Ứng viên có thể gửi mail để ứng tuyển
+![mailforCom.png](img%2FmailforCom.png)
+![mailofCan.png](img%2FmailofCan.png)
+## 5.3 Đề xuất một số skill mà ứng viên chưa có để học.
+![suggestSkillforCan.png](img%2FsuggestSkillforCan.png)
+### 5.4 Một số kỹ năng mà ứng viên đã học
+![seecan_skill.png](img%2Fseecan_skill.png)
+### 5.5 tìm kiếm job theo tên hoặc mô tả
+![findjobwithNameAndDesc.png](img%2FfindjobwithNameAndDesc.png)
+
+### note: Vì lý do github không cho push mã truy cập email nên mã truy cập sẽ được che đi 

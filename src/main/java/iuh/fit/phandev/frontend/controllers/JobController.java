@@ -5,6 +5,8 @@ import iuh.fit.phandev.backend.models.Company;
 import iuh.fit.phandev.backend.models.Job;
 import iuh.fit.phandev.backend.repoitories.JobReponsitory;
 import iuh.fit.phandev.backend.repoitories.JobSkillRepository;
+import iuh.fit.phandev.backend.services.InvitationService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class JobController {
     private JobReponsitory jobReponsitory;
     @Autowired
     private JobSkillRepository jobSkillRepository;
+    private InvitationService invitationService;
+    @Autowired
+    private iuh.fit.phandev.backend.services.invitationCom invitationCom;
 
     @GetMapping("/add-job")
     public ModelAndView addJob() {
@@ -76,6 +81,28 @@ public class JobController {
         ModelAndView mav = new ModelAndView("job/listjob");
         List<Job> listjob=jobReponsitory.findJobsByAdvanceJobMatch(value);
         mav.addObject("jobs", listjob);
+        return mav;
+    }
+    @PostMapping("/sendmailcompany")
+    public ModelAndView sendmailcompany(@RequestParam("id") Long id,HttpServletRequest request) {
+        Job job =jobReponsitory.findById(id).orElse(null);
+        ModelAndView mav = new ModelAndView("job/JobWithCan");
+        Candidate can = (Candidate) request.getSession().getAttribute("candidateLogin");
+        List<Job> listjobs=jobReponsitory.findAllJobMatchWithCandidate(can.getId());
+        mav.addObject("jobs", listjobs);
+
+
+        if(can != null){
+            try {
+                invitationCom.sendInvitation(job.getCompany().getEmail(),job.getCompany().getCompName());
+                mav.addObject("mess","send mail apply success");
+            } catch (MessagingException e) {
+
+                mav.addObject("mess","send mail apply fail");
+            }
+        }
+
+
         return mav;
     }
 

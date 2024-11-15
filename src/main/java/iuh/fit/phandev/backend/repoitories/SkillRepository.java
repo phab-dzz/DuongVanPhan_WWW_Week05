@@ -2,6 +2,7 @@ package iuh.fit.phandev.backend.repoitories;
 
 import iuh.fit.phandev.backend.models.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,8 @@ public interface SkillRepository extends JpaRepository<Skill,Long> {
     @Query("select s from Skill s where s.id not in (select cs.skill.id from CandidateSkill cs where cs.can.id " +
             " = :candidateID)")
     public List<Skill> findSkillCandidateShouldLearn(@Param("candidateID") long candidateID);
+    @Modifying
+    @Query("select s from Skill s join s.jobSkills jk join jk.job j " +
+            " where j.company.id= :companyID")
+    public List<Skill> findSkillByCompany(@Param("companyID") long companyID);
 }

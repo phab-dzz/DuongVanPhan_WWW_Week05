@@ -7,15 +7,14 @@ import iuh.fit.phandev.backend.repoitories.CandidateRepository;
 import iuh.fit.phandev.backend.repoitories.CompanyReponsitory;
 import iuh.fit.phandev.backend.repoitories.JobReponsitory;
 import iuh.fit.phandev.backend.repoitories.JobSkillRepository;
+import iuh.fit.phandev.backend.services.InvitationService;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -31,6 +30,8 @@ public class CompanyController {
 private JobReponsitory jobReponsitory;
     @Autowired
     private JobSkillRepository jobSkillRepository;
+    @Autowired
+    private InvitationService invitationService;
 
     @GetMapping("/open-signin")
     public String opensigninCan(){
@@ -69,7 +70,7 @@ private JobReponsitory jobReponsitory;
         List<Job> jobs = jobReponsitory.findAllByCompany_Id(company.getId());
         ModelAndView mav = new ModelAndView();
        mav.addObject("jobs", jobs);
-        mav.addObject("candidates",candidateRepository.findAll());
+        mav.addObject("candidates",candidateRepository.findAll().subList(0,10));
         mav.setViewName("company/findCandidateJobOfCompany");
         return mav;
     }
@@ -79,10 +80,34 @@ private JobReponsitory jobReponsitory;
         List<Candidate> candidates = candidateRepository.findCadidatesMatchWithJobs(jobId);
 
         ModelAndView mav = new ModelAndView();
+        Long id =company.getId();
+
         List<Job> jobs = jobReponsitory.findAllByCompany_Id(company.getId());
         mav.addObject("jobs", jobs);
         mav.addObject("candidates", candidates);
         mav.setViewName("company/findCandidateJobOfCompany");
+        return mav;
+    }
+    @PostMapping("/sendmail")
+    public ModelAndView sendmailcandiate(@RequestParam("id") Long id,HttpServletRequest request) {
+        Candidate can =candidateRepository.findById(id).orElse(null);
+        ModelAndView mav = new ModelAndView("company/findCandidateJobOfCompany");
+        Company company = (Company) request.getSession().getAttribute("companyLogin");
+        List<Job> jobs = jobReponsitory.findAllByCompany_Id(company.getId());
+
+        mav.addObject("jobs", jobs);
+        mav.addObject("candidates",candidateRepository.findAll().subList(0,10));
+        if(can != null){
+            try {
+                invitationService.sendInvitation(can.getEmail(),can.getFullName());
+                mav.addObject("mess","send mail apply success");
+            } catch (MessagingException e) {
+
+                mav.addObject("mess","send mail apply fail");
+            }
+        }
+
+
         return mav;
     }
 

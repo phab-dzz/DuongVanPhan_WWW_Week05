@@ -11,11 +11,11 @@
 <div th:switch="${listcanskill}">
   <h2 th:case="null">Không có skill nào ứng viên đã học</h2>
   <div th:case="*">
-    <h1>Danh sách các candidates skill của ứng viên</h1>
-    <table class="table">
+    <h2 class="text-center mt-2">Kỹ năng mà ứng viên đã học</h2>
+    <table class="table  table-bordered mt-3">
       <thead>
       <tr>
-        <th>CanID</th>
+
         <th>SkillID</th>
         <th>Skill Name</th>
         <th>Skill Level</th>
@@ -27,7 +27,7 @@
       </thead>
       <tbody>
       <tr th:each="candidateSkill : ${listcanskill}">
-        <td scope="row" th:text="${candidateSkill.getCan().getId()}"></td>
+
         <td th:text="${candidateSkill.getSkill().getId()}"></td>
         <td th:text="${candidateSkill.getSkill().getSkillName()}"></td>
         <td th:text="${candidateSkill.getSkillLevel()}"></td>
@@ -37,9 +37,7 @@
       >
         Add CandidateSkill
       </a></td>
-        <td>
 
-        </td>
       </tr>
 
       </tbody>

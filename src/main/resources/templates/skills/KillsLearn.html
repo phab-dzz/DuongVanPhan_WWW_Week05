@@ -9,15 +9,17 @@
 <body>
 <div th:replace="nav"></div>
 <div class="container-fluid w-full h-screen">
+
   <div th:if="${skills != null && !skills.isEmpty()}" class="h-full overflow-auto">
-    <h1 class="text-center">Danh sách Skill</h1>
-    <table class="table table-hover w-full">
+  <h2 class="text-center mt-2">Đề xuất một số kỹ năng nên học</h2>
+    <table class="table table-hover w-full  table-bordered mt-3">
       <thead>
       <tr>
         <th>Skill Id</th>
         <th>Skill Name</th>
         <th>Type</th>
         <th>Description</th>
+        <th>Action</th>
       </tr>
       </thead>
       <tbody>
@@ -26,11 +28,13 @@
         <td th:text="${skill.getSkillName()}"></td>
         <td th:text="${skill.getType()}"></td>
         <td th:text="${skill.getSkillDescription()}"></td>
+        <td><a class="btn btn-primary">Lien he khoa hoc</a></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 
 </body>
 </html>
