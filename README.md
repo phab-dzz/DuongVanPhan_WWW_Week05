@@ -40,4 +40,4 @@
 ### 5.5 tìm kiếm job theo tên hoặc mô tả
 ![findjobwithNameAndDesc.png](img%2FfindjobwithNameAndDesc.png)
 
-### note: Vì lý do github không cho push mã truy cập email nên mã truy cập sẽ được che đi 
+### Vì lý do github không cho push mã truy cập email nên mã truy cập sẽ được che đi-> chức năng gửi mail sẽ không hoạt động 

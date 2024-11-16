@@ -94,7 +94,7 @@ public class JobController {
 
         if(can != null){
             try {
-                invitationCom.sendInvitation(job.getCompany().getEmail(),job.getCompany().getCompName());
+                invitationCom.sendInvitation(job.getCompany().getEmail(),can.getFullName());
                 mav.addObject("mess","send mail apply success");
             } catch (MessagingException e) {
 

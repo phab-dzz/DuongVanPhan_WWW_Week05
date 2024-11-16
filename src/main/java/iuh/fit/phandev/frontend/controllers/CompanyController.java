@@ -99,7 +99,7 @@ private JobReponsitory jobReponsitory;
         mav.addObject("candidates",candidateRepository.findAll().subList(0,10));
         if(can != null){
             try {
-                invitationService.sendInvitation(can.getEmail(),can.getFullName());
+                invitationService.sendInvitation(can.getEmail(),company.getCompName());
                 mav.addObject("mess","send mail apply success");
             } catch (MessagingException e) {
 
