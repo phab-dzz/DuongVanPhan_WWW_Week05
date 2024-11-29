@@ -67,7 +67,7 @@ public class SkillController {
         mav.setViewName("company/findCandidateSkillOfCompany");
         return mav;
     }
-    @PostMapping("/findCandiatewithskill")
+    @PostMapping("/findCandidatewithskill")
     public  ModelAndView findCadidateMatchWithJob(@RequestParam("skillId") Long skillId, HttpServletRequest request){
         Company company = (Company) request.getSession().getAttribute("companyLogin");
         List<Candidate> candidates = candidateRepository.findCadidatesMatchWithSkills(skillId);

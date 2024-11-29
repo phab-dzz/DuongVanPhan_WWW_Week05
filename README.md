@@ -8,13 +8,20 @@
 ### 4.1 Trang đăng nhập với vai trò là nhà tuyển dụng
 ![homepage.png](img%2Fhomepage.png)
 ![signincom.png](img%2Fsignincom.png)
+#### Đăng kí tài khoản công ty
+![singupCom.png](img%2FsingupCom.png)
 ### 4.2 Đăng tin tuyển dụng
-![post.png](img%2Fpost.png)
-![listjob.png](img%2Flistjob.png)
-![jobskill.png](img%2Fjobskill.png)
+![postCoM.png](img%2FpostCoM.png)
+![listjobs.png](img%2Flistjobs.png)
+![jobskilln.png](img%2Fjobskilln.png)
+### Xem chi tiết công việc
+![detailjob.png](img%2Fdetailjob.png)
 ### 4.3.1 Xem danh sách ứng viên phù hợp với công việc(cùng khu vực với công ty)
 ![jobmatchcomp.png](img%2Fjobmatchcomp.png)
 ![filtercandidatematchjob.png](img%2Ffiltercandidatematchjob.png)
+### In ra danh sách ứng viên
+![export.png](img%2Fexport.png)
+![excel.png](img%2Fexcel.png)
 ### 4.3.2 Xem danh sách ứng viên có skill phù hợp rồi gửi mail mời(lọc theo skill mà công ty cần->Khi chọn được ứng viên thì gửi mail cho ứng viên).
 ![skillmatchjobComp.png](img%2FskillmatchjobComp.png)
 ![sendmail_success.png](img%2Fsendmail_success.png)
@@ -28,6 +35,8 @@
 ## 5. Các chức năng cho ứng viên
 ### 5.1 Trang đăng nhập với vai trò là ứng viên
 ![signinCan.png](img%2FsigninCan.png)
+#### Đăng kí tài khoản 
+![signupCan.png](img%2FsignupCan.png)
 ### 5.2.1 ứng viên khi log vào sẽ được gợi ý các công việc có skill phù hợp với mình
 ![suggestjobwithCan.png](img%2FsuggestjobwithCan.png)
 ### 5.2.2 Ứng viên có thể gửi mail để ứng tuyển
@@ -36,7 +45,7 @@
 ## 5.3 Đề xuất một số skill mà ứng viên chưa có để học.
 ![suggestSkillforCan.png](img%2FsuggestSkillforCan.png)
 ### 5.4 Một số kỹ năng mà ứng viên đã học
-![seecan_skill.png](img%2Fseecan_skill.png)
+![img_1.png](img_1.png)
 ### 5.5 tìm kiếm job theo tên hoặc mô tả
 ![findjobwithNameAndDesc.png](img%2FfindjobwithNameAndDesc.png)
 

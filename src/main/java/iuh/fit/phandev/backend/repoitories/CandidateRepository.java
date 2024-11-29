@@ -1,6 +1,7 @@
 package iuh.fit.phandev.backend.repoitories;
 
 import iuh.fit.phandev.backend.models.Candidate;
+import iuh.fit.phandev.backend.models.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,6 +20,8 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     @Query("select c from Candidate c join c.candidateSkills ck join ck.skill s join s.jobSkills js join js.job j " +
             "where s.id = :SkillID and c.address.city = j.company.address.city")
     public List<Candidate> findCadidatesMatchWithSkills(@Param("SkillID") long SkillID);
+    @Query("SELECT c FROM Candidate c JOIN c.candidateSkills cs JOIN cs.skill s WHERE s IN :skills")
+    List<Candidate> findCandidatesBySkills(@Param("skills") List<Skill> skills);
 
 
 

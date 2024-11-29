@@ -1,5 +1,6 @@
 package iuh.fit.phandev.frontend.controllers;
 
+import com.neovisionaries.i18n.CountryCode;
 import iuh.fit.phandev.backend.models.Address;
 import iuh.fit.phandev.backend.models.Candidate;
 import iuh.fit.phandev.backend.repoitories.AddressRepository;
@@ -79,26 +80,26 @@ public class CandidateController {
 
             candidate.setAddress(new Address());
         }
+        if ( candidate.getAddress().getCountry() != null ) {
+        CountryCode countryCode = CountryCode.valueOf(String.valueOf(candidate.getAddress().getCountry()));
+        candidate.getAddress().setCountry(countryCode);}
 
+            candidate.getAddress().setCountry(CountryCode.VN);
 
         Address address = new Address(
                 candidate.getAddress().getNumber(),
                 candidate.getAddress().getStreet(),
                 candidate.getAddress().getCity(),
                 candidate.getAddress().getZipcode(),
+
                 candidate.getAddress().getCountry()
         );
 
 
         addressRepository.save(address);
-
-
         candidate.setAddress(address);
-
-
         candidateRepository.save(candidate);
-
-        return "redirect:/list";
+        return "redirect:/open-signin";
     }
 
     @GetMapping("/add-candidates")

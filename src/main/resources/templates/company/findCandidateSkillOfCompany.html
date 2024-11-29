@@ -11,11 +11,11 @@
 <body>
 <div th:replace="nav"></div>
 <div class="d-flex w-full mb-4 mt-1">
-  <form method="post" action="#" th:action="@{/skill/findCandiatewithskill}"
+  <form method="post" action="#" th:action="@{/skill/findCandidatewithskill}"
         class="d-flex w-50 align-items-center gap-sm-3 justify-content-start">
     <div class="form-group w-50 d-flex align-items-center">
       <label for="inputJob">Chọn:</label>
-      <select class="form-control" name="jobId" id="inputJob">
+      <select class="form-control" name="skillId" id="inputJob">
         <th:block th:each="skill : ${skills}">
           <option th:value="${skill.getId()}" th:text="${skill.getSkillName()}"></option>
         </th:block>
@@ -35,7 +35,7 @@
     <tr>
 
       <th>Name</th>
-      <th>DOB</th>
+
       <th>Phone</th>
       <th>Email</th>
       <th>Address</th>
@@ -46,9 +46,10 @@
     <tr th:each="candidate : ${candidates}">
 
       <td scope="row" th:text="${candidate.fullName}"></td>
-      <td th:text="${candidate.email}"></td>
-      <td th:text="${candidate.dob}"></td>
       <td th:text="${candidate.phone}"></td>
+      <td th:text="${candidate.email}"></td>
+
+
       <td th:text="${candidate.address}"></td>
       <td> <form action="#" th:action="@{/skill/sendmail}" method="post">
         <input type="hidden" name="id" th:value="${candidate.getId()}"/>

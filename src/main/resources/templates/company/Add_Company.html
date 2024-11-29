@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Candidate</title>
+    <title>Thêm Company</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -50,18 +50,18 @@
 <body>
 <div th:replace="nav"></div>
 <div class="container">
-    <h1 class="text-center">Tạo tài khoản Candidate</h1>
-    <form method="post" th:action="@{/candidates/add}" th:object="${candidate}">
+    <h1 class="text-center">Tạo tài khoản Company</h1>
+    <form method="post" th:action="@{/SignupCom}" th:object="${company}">
 
         <div class="form-group">
-            <label for="inputname">Full Name</label>
-            <input type="text" class="form-control" id="inputname" th:value="${candidate.fullName}" th:name="fullName" required>
+            <label for="inputname">Company Name</label>
+            <input type="text" class="form-control" id="inputname" th:value="${company.compName}" th:name="compName" required>
         </div>
 
 
         <div class="form-group">
             <label for="inputusername">Username</label>
-            <input type="text" class="form-control" id="inputusername" th:value="${candidate.username}" th:name="username" placeholder="Nhập username" required>
+            <input type="text" class="form-control" id="inputusername" th:value="${company.username}" th:name="username" placeholder="Nhập username" required>
         </div>
 
 
@@ -73,58 +73,69 @@
 
         <div class="form-group">
             <label for="inputphone">Phone</label>
-            <input type="text" class="form-control" id="inputphone" th:value="${candidate.phone}" th:name="phone" required>
+            <input type="text" class="form-control" id="inputphone" th:value="${company.phone}" th:name="phone" required>
         </div>
 
 
         <div class="form-group">
             <label for="inputemail">Email</label>
-            <input type="email" class="form-control" id="inputemail" th:value="${candidate.email}" th:name="email" required>
+            <input type="email" class="form-control" id="inputemail" th:value="${company.email}" th:name="email" required>
         </div>
-
-
         <div class="form-group">
-            <label for="inputdob">Date of Birth</label>
-            <input type="date" class="form-control" id="inputdob" th:value="${#dates.format(candidate.dob, 'yyyy-MM-dd')}" th:name="dob" required>
+            <label for="inputabout">About</label>
+            <input type="text" class="form-control" id="inputabout" th:value="${company.about}" th:name="about" required>
         </div>
+        <div class="form-group">
+            <label for="inputwebUrl">Web URL</label>
+            <input type="text" class="form-control" id="inputwebUrl" th:value="${company.webUrl}" th:name="webUrl" required>
+        </div>
+
+
+<!--        <div class="form-group">-->
+<!--            <label for="inputdob">Date of Birth</label>-->
+<!--            <input type="date" class="form-control" id="inputdob" th:value="${#dates.format(candidate.dob, 'yyyy-MM-dd')}" th:name="dob" required>-->
+<!--        </div>-->
 
         <h2 class="mt-4">Địa chỉ</h2>
 
         <div class="form-group">
             <label for="inputcity">City</label>
-            <input type="text" class="form-control" id="inputcity" th:value="${candidate.address.city}" th:name="city" required>
+            <input type="text" class="form-control" id="inputcity" th:value="${company.address.city}" th:name="city" required>
         </div>
 
 
         <div class="form-group">
             <label for="inputstreet">Street</label>
-            <input type="text" class="form-control" id="inputstreet" th:value="${candidate.address.street}" th:name="street" required>
+            <input type="text" class="form-control" id="inputstreet" th:value="${company.address.street}" th:name="street" required>
         </div>
 
 
         <div class="form-group">
             <label for="inputnumber">Number</label>
-            <input type="text" class="form-control" id="inputnumber" th:value="${candidate.address.number}" th:name="number" required>
+            <input type="text" class="form-control" id="inputnumber" th:value="${company.address.number}" th:name="number" required>
         </div>
 
 
         <div class="form-group">
             <label for="inputcode">Zipcode</label>
-            <input type="text" class="form-control" id="inputcode" th:value="${candidate.address.zipcode}" th:name="zipcode" required>
+            <input type="text" class="form-control" id="inputcode" th:value="${company.address.zipcode}" th:name="zipcode" required>
         </div>
+
+
         <div class="form-group">
             <label for="inputcountry">Country</label>
-        <select class="form-control" id="inputcountry" th:value="${candidate.address.country}" th:name="country" required>
+        <select class="form-control" id="inputcountry" th:value="${company.address.country}" th:name="country" required>
+
             <option th:each="code : ${T(com.neovisionaries.i18n.CountryCode).values()}"
                     th:value="${code.name()}"
                     th:text="${code.getName()}"></option>
         </select>
         </div>
 
-<!--        <div class="form-group">-->
-<!--            <label for="inputcountry">Country</label>-->
-<!--            <input type="text" class="form-control" id="inputcountry" th:value="${candidate.address.country}" th:name="country" required>-->
-<!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label for="inputcountry">Country</label>-->
+        <!--            <input type="text" class="form-control" id="inputcountry" th:value="${candidate.address.country}" th:name="country" required>-->
+        <!--        </div>-->
 
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Đăng ký</button>

@@ -3,6 +3,8 @@ package iuh.fit.phandev.frontend.controllers;
 import iuh.fit.phandev.backend.models.Candidate;
 import iuh.fit.phandev.backend.models.Company;
 import iuh.fit.phandev.backend.models.Job;
+import iuh.fit.phandev.backend.models.Skill;
+import iuh.fit.phandev.backend.repoitories.CandidateRepository;
 import iuh.fit.phandev.backend.repoitories.JobReponsitory;
 import iuh.fit.phandev.backend.repoitories.JobSkillRepository;
 import iuh.fit.phandev.backend.services.InvitationService;
@@ -19,6 +21,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/job")
 public class JobController {
+    @Autowired
+    private CandidateRepository candidateRepository;
     @Autowired
     private JobReponsitory jobReponsitory;
     @Autowired
@@ -105,7 +109,17 @@ public class JobController {
 
         return mav;
     }
+    @GetMapping("/detail/{id}")
+    public String findJobDetails(@PathVariable Long id, Model model) {
 
+        Job job=jobReponsitory.findById(id).orElse(null);
+        model.addAttribute("job", job);
+        List<Skill> Skills = jobSkillRepository.findSkillsByJob_Id(id);
+        List<Candidate> candidates = candidateRepository.findCandidatesBySkills(Skills);
+        model.addAttribute("skills", Skills);
+        model.addAttribute("candidates", candidates);
+        return "job/detail-job";
+    }
 
 
 }

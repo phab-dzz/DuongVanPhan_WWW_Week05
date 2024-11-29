@@ -11,37 +11,31 @@
 <div th:switch="${listcanskill}">
   <h2 th:case="null">Không có skill nào ứng viên đã học</h2>
   <div th:case="*">
-    <h2 class="text-center mt-2">Kỹ năng mà ứng viên đã học</h2>
-    <table class="table  table-bordered mt-3">
-      <thead>
-      <tr>
+    <div class="container mt-4">
+      <h2 class="text-center mb-4">Danh Sách Kỹ Năng Ứng Viên</h2>
 
-        <th>SkillID</th>
-        <th>Skill Name</th>
-        <th>Skill Level</th>
-        <th>More infos</th>
-        <th>
-         Action
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="candidateSkill : ${listcanskill}">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div th:each="candidateSkill : ${listcanskill}" class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Tên Kỹ Năng:</strong> <span th:text="${candidateSkill.getSkill().getSkillName()}"></span></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><strong>Mô Tả:</strong> <span th:text="${candidateSkill.getMoreInfos()}"></span></h6>
+              <p class="card-text"><strong>Cấp Độ Kỹ Năng:</strong> <span th:text="${candidateSkill.getSkillLevel()}"></span></p>
+            </div>
+            <div class="card-footer text-center">
 
-        <td th:text="${candidateSkill.getSkill().getId()}"></td>
-        <td th:text="${candidateSkill.getSkill().getSkillName()}"></td>
-        <td th:text="${candidateSkill.getSkillLevel()}"></td>
-        <td th:text="${candidateSkill.getMoreInfos()}">
-        <td> <a th:href="@{/candidateSkill/OpenAddCandidateSkill(canID=${candidate.getId()})}"
-                class="btn btn-primary"
-      >
-        Add CandidateSkill
-      </a></td>
+              <a th:href="@{/candidateSkill/OpenAddCandidateSkill(canID=${candidate.getId()})}" class="btn btn-success">
+                <i class="bi bi-person-plus"></i> Thêm kỹ năng
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      </tr>
 
-      </tbody>
-    </table>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
   </div>
 </div>
 </body>

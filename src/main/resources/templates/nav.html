@@ -12,13 +12,6 @@
             <li class="nav-item">
                 <a th:if="${session != null && session.companyLogin != null}" class="nav-link" th:href="@{/job/list}">Xem danh sách Job</a>
             </li>
-<!--            <li class="nav-item active mr-3">-->
-<!--                <a th:if="${session != null && session.companyLogin != null}"-->
-<!--                   th:href="@{/findCadidateMatchOfCompany}"-->
-<!--                   class="nav-link"-->
-<!--                >Tìm các ứng viên có-->
-<!--                    skill phù hợp</a>-->
-<!--            </li>-->
 
             <li class="nav-item dropdown" th:if="${session != null && session.companyLogin != null}">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Xem danh sách
@@ -29,15 +22,14 @@
                         <a
                                 th:href="@{/findCadidateMatchOfCompany}"
                            class=" nav-link"
-                        >Tìm các ứng phù hợp</a>
+                        >Tìm các ứng viên phù hợp</a>
                     </li>
                     <li class="nav-item active mr-3"
                     >
                         <a
                            href="/skill/findCadidateskillMatchOfCompany"
                            class=" nav-link"
-                        >Xem công
-                            việc có skill phù hợp</a>
+                        >tìm ứng viên có skill phù hợp</a>
                     </li>
                 </ul>
             </li>
@@ -59,7 +51,7 @@
                    href="/job/findJobWithcan"
                    class=" nav-link"
                 >Xem công
-                    việc phù hợp</a>
+                    việc phù hợp  </a>
             </li>
 
             <li class="nav-item dropdown" th:if="${session != null && session.companyLogin != null}">
@@ -70,31 +62,58 @@
                     <li><a class="dropdown-item" th:href="@{/candidates}" >Xem Ds phân trang</a></li>
 
 
-                    <li><a class="dropdown-item" th:href="@{/add-candidates}">Thêm ứng viên</a></li>
+
                 </ul>
             </li>
             <li class="nav-item">
                 <a th:if="${session != null && (session.companyLogin != null || session.candidateLogin != null)}" class="nav-link" th:href="@{/skill/openformadd}">Thêm kỹ năng</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
+
 
         </ul>
-        <div class="d-flex form-inline">
-            <form th:if="${session!=null && (session.companyLogin != null || session.candidateLogin != null)}" class=" d-flex form-inline my-2 my-lg-0" th:action="@{/job/advanceJobMatch}">
-                <input  class="form-control mr-sm-5" type="search" placeholder="Search" aria-label="Search" name="value">
-                <button   class="ml-1 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <div class="d-flex form-inline gap-sm-2">
+
+            <form th:if="${session != null && (session.companyLogin != null || session.candidateLogin != null)}"
+                  class="d-flex form-inline my-2 my-lg-0"
+                  th:action="@{/job/advanceJobMatch}">
+                <input class="form-control mr-sm-5" type="search" placeholder="Search" aria-label="Search" name="value">
+                <button class="ml-1 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+
+
             <a class="btn btn-outline-success my-2 my-sm-0" type="submit"
                th:if="${session != null && (session.companyLogin != null || session.candidateLogin != null)}"
-               th:href="@{/logout}"
-            >Logout</a>
+               th:href="@{/logout}">
+                Logout
+            </a>
+
+
+
+
+
+            <div class="nav-item dropdown" th:if="${session.companyLogin == null && session.candidateLogin == null}">
+                <a
+                        class="btn btn-outline-success dropdown-toggle"
+                        role="button"
+                        data-bs-toggle="dropdown">
+                    SignUp
+                </a>
+                <ul class="dropdown-menu"  style="width: 100px; padding:0">
+                    <li>
+                        <a class="dropdown-item"  th:href="@{/add-candidates}">Candidate</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{/open-signupCom}">Company</a>
+                    </li>
+                </ul>
+            </div>
             <a class="btn btn-outline-success my-2 my-sm-0" type="submit"
                th:if="${session.companyLogin == null && session.candidateLogin == null}"
-               th:href="@{/open-signin}"
-            >Login</a>
+               th:href="@{/open-signin}">
+                Login
+            </a>
         </div>
+
 
 
 

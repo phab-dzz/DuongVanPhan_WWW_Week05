@@ -17,7 +17,7 @@
     <h3 class="mb-4">Một số công việc phù hợp với bạn:</h3>
     <div class="row">
         <div th:each="job : ${jobs}" class="col-md-4 mb-3">
-            <div class="card bg-info">
+            <div class="card rounded" >
                 <div class="card-body">
                     <h5 class="card-title" th:text="${'Mã công việc: '+job.getId()}"></h5>
 

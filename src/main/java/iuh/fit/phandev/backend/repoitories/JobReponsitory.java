@@ -1,6 +1,7 @@
 package iuh.fit.phandev.backend.repoitories;
 
 import iuh.fit.phandev.backend.models.Job;
+import iuh.fit.phandev.backend.models.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,5 @@ public interface JobReponsitory extends JpaRepository<Job,Long> {
     @Query("SELECT j FROM Job j JOIN j.jobSkills jk JOIN jk.skill s " +
             "WHERE j.jobName LIKE CONCAT('%', :value, '%')or j.jobDesc LIKE CONCAT('%', :value, '%')")
     List<Job> findJobsByAdvanceJobMatch(@Param("value") String value);
+
 }
