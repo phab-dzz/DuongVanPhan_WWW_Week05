@@ -21,7 +21,7 @@
 ![filtercandidatematchjob.png](img%2Ffiltercandidatematchjob.png)
 ### In ra danh sách ứng viên
 ![export.png](img%2Fexport.png)
-![excel.png](img%2Fexcel.png)
+![excel.png](img%2Fexcel.png)0
 ### 4.3.2 Xem danh sách ứng viên có skill phù hợp rồi gửi mail mời(lọc theo skill mà công ty cần->Khi chọn được ứng viên thì gửi mail cho ứng viên).
 ![skillmatchjobComp.png](img%2FskillmatchjobComp.png)
 ![sendmail_success.png](img%2Fsendmail_success.png)
@@ -29,7 +29,7 @@
 ### code minh hoa
 ![code_mail.png](img%2Fcode_mail.png)
 ### 4.4 Thêm skill mới
-![addskill.png](img%2Faddskill.png)
+![addSkill.png](img%2FaddSkill.png)
 
 
 ## 5. Các chức năng cho ứng viên
@@ -45,8 +45,8 @@
 ## 5.3 Đề xuất một số skill mà ứng viên chưa có để học.
 ![suggestSkillforCan.png](img%2FsuggestSkillforCan.png)
 ### 5.4 Một số kỹ năng mà ứng viên đã học
-![img_1.png](img_1.png)
+![dsSkillCan.png](img%2FdsSkillCan.png)
 ### 5.5 tìm kiếm job theo tên hoặc mô tả
-![findjobwithNameAndDesc.png](img%2FfindjobwithNameAndDesc.png)
+![findSkillByNameAnDesc.png](img%2FfindSkillByNameAnDesc.png)
 
 ### Vì lý do github không cho push mã truy cập email nên mã truy cập sẽ được che đi-> chức năng gửi mail sẽ không hoạt động 

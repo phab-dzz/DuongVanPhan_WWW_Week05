@@ -12,6 +12,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -153,22 +155,23 @@ private JobReponsitory jobReponsitory;
         return mav;
     }
     @GetMapping("/export/Excel/{id}")
-    public ResponseEntity<byte[]> exportToExcel(@PathVariable Long id,HttpServletRequest request) throws IOException {
-        List<Candidate> candidates = candidateRepository.findCadidatesMatchWithJobs(id);
+    public ResponseEntity<byte[]> exportToExcel(@PathVariable(required = false) Long id) throws IOException {
+
+        List<Candidate> candidates = (id == null)
+                ? candidateRepository.findAll().stream().limit(10).toList()
+                : candidateRepository.findCadidatesMatchWithJobs(id);
 
 
         ExcelExport excelExporter = new ExcelExport();
         byte[] excelFile = excelExporter.exportToExcel(candidates);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=candidates.xlsx");
+        headers.setContentDisposition(ContentDisposition.attachment().filename("candidates.xlsx").build());
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .body(excelFile);
+        return ResponseEntity.ok().headers(headers).body(excelFile);
     }
+
 
 
 
