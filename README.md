@@ -1,5 +1,10 @@
-# Xây Dựng Hệ Thống tuyển ứng viên cho công ty công
-(Một số yêu cầu)
+# LAB WEEK 05:Xây Dựng Hệ Thống tuyển ứng viên cho công ty công
+
+# Thông tin sinh viên:
+- Họ tên: Dương Văn Phấn   MSSV: 21101491
+- học phần: DHKTPM17A  Môn học: Lập trình WWW Java
+- Giảng viên giảng dạy: TS Võ Văn Hải x Ths Đặng Thị Thu Hà
+(Một số yêu cầu lab)
 ## 1. Tạo các Entity để tạo ra các bảng trong cơ sở dữ liệu
 ## 2. Viết các Repositories Interface
 ## 3. Viết các lớp Services
